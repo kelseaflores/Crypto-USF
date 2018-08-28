@@ -91,6 +91,30 @@ def caesar_decrypt(cipher_text):
 # Resource for simple substitution cipher: 
 # http://practicalcryptography.com/ciphers/simple-substitution-cipher/
 def simple_sub_encrypt(text):
+	"""
+	Encrypts the text passed in (using a simple substitution cipher) as an argument 
+	and writes the encrypted code to an output file. 
+
+    Iterates through the plain text character by character, determines the ASCII value, and 
+    depending on whether the character is upper case or lower case, subtracts 65 or 97,
+    respectively to find the index of the character in the plain alphabet array. 
+
+    There are also two cipher alphabet arrays (one for upper case, one for lower case). Once 
+    index of the plain text character is found, the function replaces that character with 
+    its cipher equivalent. 
+
+    Parameters
+    ----------
+    text : str
+        Plain text read in from the file passed in at the commmand line
+
+    Returns
+    -------
+    null
+        No return value
+
+    """
+
 	plain_alphabet_lower = ['a','b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 
 		'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
 		'w', 'x', 'y', 'z']
@@ -109,7 +133,7 @@ def simple_sub_encrypt(text):
 		a_val = ord(c)
 		if a_val == 32:
 			cipher_text = cipher_text + " "
-		elif a_val == 10: 
+		elif a_val == 10:
 			cipher_text = cipher_text + "\n"
 		elif a_val > 64 and a_val < 91:
 			cipher_text = cipher_text + cipher_alphabet_upper[a_val - 65]
@@ -118,6 +142,29 @@ def simple_sub_encrypt(text):
 	return cipher_text
 
 def simple_sub_decrypt(cipher_text):
+	"""
+   	Decrypts the text passed in as an argument and writes the encrypted code to 
+   	an output file. 
+
+    Iterates through the cipher text character by character, determines the ASCII value, and 
+    depending on whether the character is upper case or lower case, subtracts 65 or 97,
+    respectively to find the index of the character in the cipher alphabet array. 
+
+    The function will then use that index to get the character at that index in the 
+    plain alphabet (either upper or lower, depending on the ASCII value of the cipher character).
+    The function replaces that character with its plain alphabet equivalent. 
+
+    Parameters
+    ----------
+    cipher_text : str
+        Cipher text read in from the file passed in at the command line
+
+    Returns
+    -------
+    null
+        No return value
+
+    """
 	plain_alphabet_lower = ['a','b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 
 		'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
 		'w', 'x', 'y', 'z']
@@ -146,9 +193,87 @@ def simple_sub_decrypt(cipher_text):
 			plain_text = plain_text + plain_alphabet_lower[i]
 	return plain_text
 
+# Resource for Atbash Cipher:
+# http://practicalcryptography.com/ciphers/classical-era/atbash-cipher/
+def atbash_encrypt(text):
+	plain_alphabet_lower = ['a','b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 
+		'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
+		'w', 'x', 'y', 'z']
+	cipher_alphabet_lower = ['z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q',
+		'p', 'o', 'n', 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd', 
+		'c', 'b', 'a']
+	plain_alphabet_upper = ['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+		'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 
+		'W', 'X', 'Y', 'Z']
+	cipher_alphabet_upper = ['Z', 'Y', 'X', 'W', 'V', 'U', 'T', 'S', 'R', 'Q',
+		'P', 'O', 'N', 'M', 'L', 'K', 'J', 'I', 'H', 'G', 'F', 'E', 'D', 
+		'C', 'B', 'A']
+
+	cipher_text = ""
+	for c in text: 
+		a_val = ord(c)
+		if a_val == 32:
+			cipher_text = cipher_text + " "
+		elif a_val == 10:
+			cipher_text = cipher_text + "\n"
+		elif a_val > 64 and a_val < 91:
+			cipher_text = cipher_text + cipher_alphabet_upper[a_val - 65]
+		elif a_val > 96 and a_val < 123:
+			cipher_text = cipher_text + cipher_alphabet_lower[a_val - 97]
+	return cipher_text
+
+def atbash_decrypt(cipher_text):
+	plain_alphabet_lower = ['a','b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 
+		'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
+		'w', 'x', 'y', 'z']
+	cipher_alphabet_lower = ['z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q',
+		'p', 'o', 'n', 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd', 
+		'c', 'b', 'a']
+	plain_alphabet_upper = ['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+		'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 
+		'W', 'X', 'Y', 'Z']
+	cipher_alphabet_upper = ['Z', 'Y', 'X', 'W', 'V', 'U', 'T', 'S', 'R', 'Q',
+		'P', 'O', 'N', 'M', 'L', 'K', 'J', 'I', 'H', 'G', 'F', 'E', 'D', 
+		'C', 'B', 'A']
+
+	plain_text = ""
+	for c in cipher_text:
+		a_val = ord(c)
+		if a_val == 32:
+			plain_text = plain_text + " "
+		elif a_val == 10:
+			plain_text = plain_text + "\n"
+		elif a_val > 64 and a_val < 91:
+			i = cipher_alphabet_upper.index(plain_alphabet_upper[a_val - 65])
+			plain_text = plain_text + plain_alphabet_upper[i]			
+		elif a_val > 96 and a_val < 123:
+			i = cipher_alphabet_lower.index(plain_alphabet_lower[a_val - 97])
+			plain_text = plain_text + plain_alphabet_lower[i]
+	return plain_text
+
 # Resource for polyalphabetic cipher (Vigenere cipher):
 # https://www.dcode.fr/vigenere-cipher
 def vigenere_encrypt(text):
+	"""
+	Encrypts the text passed in (using Vigenere cipher) as an argument 
+	and writes the encrypted code to an output file. 
+
+    
+
+    Parameters
+    ----------
+    arg1 : int
+        Description of arg1
+    arg2 : str
+        Description of arg2
+
+    Returns
+    -------
+    int
+        Description of return value
+
+    """
+
 	key = "kota"
 	cipher_text = ""
 	key_index = 0
@@ -157,15 +282,22 @@ def vigenere_encrypt(text):
 		a_val = ord(c)
 		if a_val == 32: 
 			cipher_text = cipher_text + " "
+		elif a_val == 10:
+			cipher_text = cipher_text + "\n"
 		else:
+			if a_val > 64 and a_val < 91:
+				a_val -= 65
+				key_val = ord(key[key_index]) - 65
+				new_index = (a_val + key_val) % 26
+				cipher_text = cipher_text + chr(new_index + 65)
+			elif a_val > 96 and a_val < 123:  
+				a_val -= 97
+				key_val = ord(key[key_index]) - 97
+				new_index = (a_val + key_val) % 26
+				cipher_text = cipher_text + chr(new_index + 97)
+			key_index += 1
 			if key_index == len(key):
 				key_index = 0
-
-			a_val -= 97
-			key_val = ord(key[key_index]) - 97
-			new_index = (a_val + key_val) % 26
-			cipher_text = cipher_text + chr(new_index + 97)
-			key_index += 1
 	return cipher_text
 
 def vigenere_decrypt(cipher_text):
@@ -177,21 +309,23 @@ def vigenere_decrypt(cipher_text):
 		a_val = ord(c)
 		if a_val == 32:
 			plain_text = plain_text + " "
+		elif a_val == 10:
+			plain_text = plain_text + "\n"
 		else: 
-			a_val -= 97
+			if a_val > 64 and a_val < 91:
+				a_val -= 65
+				key_val = ord(key[key_index]) - 65
+				new_index = (a_val - key_val) % 26
+				plain_text = plain_text + chr(new_index + 65)
+			else:
+				a_val -= 97
+				key_val = ord(key[key_index]) - 97
+				new_index = (a_val - key_val) % 26
+				plain_text = plain_text + chr(new_index + 97)
+			key_index += 1
 			if key_index == len(key):
 				key_index = 0
-			key_val = ord(key[key_index]) - 97
-			new_index = (a_val - key_val) % 26
-			plain_text = plain_text + chr(new_index + 97)
-			key_index += 1
 	return plain_text
-
-def encrypt_spaces(c):
-	if c == " ":
-		return "/"
-	if c == "\n":
-		return "//"
 
 # Resources for Rail Fence cipher: 
 # https://www.britannica.com/topic/transposition-cipher
@@ -300,12 +434,16 @@ else:
 # print ("Encrypted Text:\n" + simple_sub_text + "\n")
 # print ("Decrypted Text:\n" + simple_sub_decrypt(simple_sub_text + "\n"))
 # print
-# print ("Testing polyalphabetic cipher:")
-# vigenere_text = vigenere_encrypt(contents)
-# print ("Encrypted Text: " + vigenere_text)
-# print ("Decrypted Text: " + vigenere_decrypt(vigenere_text))
+# print ("Testing Atbash cipher:")
+# at_text = atbash_encrypt(contents)
+# print ("Encrypted Text: " + at_text)
+# print ("Decrypted Text: " + atbash_decrypt(at_text))
+print ("Testing polyalphabetic cipher:")
+vigenere_text = vigenere_encrypt(contents)
+print ("Encrypted Text: " + vigenere_text)
+print ("Decrypted Text: " + vigenere_decrypt(vigenere_text))
 # print
-print ("Testing transposition cipher:")
-trans_text = rail_fence_encrypt(contents)
-print ("Encrypted Text: " + trans_text)
+# print ("Testing transposition cipher:")
+# trans_text = rail_fence_encrypt(contents)
+# print ("Encrypted Text: " + trans_text)
 # print ("Decrypted Text: " + transposition_cipher(trans_text))
