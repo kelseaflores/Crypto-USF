@@ -8,12 +8,17 @@
 
 import sys 
 
+def is_punctuation(c):
+	val = ord(c)
+	if val < 65 and (val > 90 and val < 97) and val > 122 and val != " " and val != "\n":
+		print "this is punctuation"
+
 # Resource for Caesar cipher:
 # https://learncryptography.com/classical-encryption/caesar-cipher
 def caesar_encrypt(text, output_file):
 	"""
     Encrypts the text passed in (using Ceasar cipher) as an argument and 
-    writes the encrypted code to an output file. 
+    writes the encrypted code to the given output file. 
 
     Iterates through the plain text character by character, gets the character's
     ASCII value, adds 2 to the value, and converts it back into a character. 
@@ -50,7 +55,8 @@ def caesar_encrypt(text, output_file):
 
 def caesar_decrypt(cipher_text, output_file):
 	"""
-    Decrypts the cipher text that is passed in back to plain text.
+    Decrypts the cipher text that is passed in back to plain text and writes
+    the decrypted text to the given output file.
 
     Iterates through the cipher text character by character, gets the character's
     ASCII value, subtracts 2 from the value, and converts it back into a character. 
@@ -91,7 +97,7 @@ def caesar_decrypt(cipher_text, output_file):
 def simple_sub_encrypt(text, output_file):
 	"""
 	Encrypts the text passed in (using a simple substitution cipher) as an argument 
-	and writes the encrypted code to an output file. 
+	and writes the encrypted code to the given output file. 
 
     Iterates through the plain text character by character, determines the ASCII value, and 
     depending on whether the character is upper case or lower case, subtracts 65 or 97,
@@ -139,7 +145,7 @@ def simple_sub_encrypt(text, output_file):
 def simple_sub_decrypt(cipher_text, output_file):
 	"""
    	Decrypts the text passed in as an argument and writes the decrypted code to 
-   	an output file. 
+   	the given output file. 
 
     Iterates through the cipher text character by character, determines the ASCII value, and 
     depending on whether the character is upper case or lower case, subtracts 65 or 97,
@@ -190,7 +196,7 @@ def simple_sub_decrypt(cipher_text, output_file):
 def atbash_encrypt(text, output_file):
 	"""
    	Encrypts the text passed in as an argument and writes the encrypted code to 
-   	an output file. 
+   	the given output file. 
 
     Iterates through the cipher text character by character, determines the ASCII value, and 
     depending on whether the character is upper case or lower case, subtracts 65 or 97,
@@ -237,7 +243,7 @@ def atbash_encrypt(text, output_file):
 def atbash_decrypt(cipher_text, output_file):
 	"""
    	Decrypts the text passed in as an argument and writes the decrypted code to 
-   	an output file. 
+   	the given output file. 
 
     Iterates through the cipher text character by character, determines the ASCII value, and 
     depending on whether the character is upper case or lower case, subtracts 65 or 97,
@@ -289,7 +295,7 @@ def atbash_decrypt(cipher_text, output_file):
 def vigenere_encrypt(text, output_file):
 	"""
 	Encrypts the text passed in (using Vigenere cipher) as an argument 
-	and writes the encrypted code to an output file. 
+	and writes the encrypted code to the given output file. 
 
     Using a key and the alphabet, take the first letter of the key, convert it to
     its ASCII value, and depending on whether its upper or lower case, is subtracted by
@@ -335,7 +341,7 @@ def vigenere_encrypt(text, output_file):
 def vigenere_decrypt(cipher_text, output_file):
 	"""
 	Decrypts the text passed in (using Vigenere cipher) as an argument 
-	and writes the decrypted code to an output file. 
+	and writes the decrypted code to the given output file. 
 
     Using a key and the alphabet, take the first letter of the key, convert it to
     its ASCII value, and depending on whether its upper or lower case, is subtracted by
@@ -381,12 +387,31 @@ def vigenere_decrypt(cipher_text, output_file):
 # Resources for Rail Fence cipher: 
 # https://www.britannica.com/topic/transposition-cipher
 # https://en.wikipedia.org/wiki/Transposition_cipher
-def rail_fence_encrypt(text):
+def rail_fence_encrypt(text, output_file):
+	"""
+	Encrypts the text passed in (using rail fence cipher) as an argument 
+	and writes the encrypted code to the given output file. 
+
+    There are three rows, or strings. The function reads the file character by character
+    and, starting at row1, appends the character onto the string. The function will keep 
+    jumping to each row with every iteration, looping around to the front when it reaches
+    the last row. Once the function reaches the end of the file, the rows are concatenated
+    into one long string, separated by a space. 
+
+    Parameters
+    ----------
+    text : str
+        Text read in from the file passed in at the command line
+    output_file : str
+        File where encrypted text will be written
+
+    """
+
+	f = open(output_file, "w")
 	row_num = 1
 	row1 = ""
 	row2 = ""
 	row3 = ""
-	cipher_text = ""
 	for c in text:
 		if row_num == 1:
 			if c == " ":
@@ -413,8 +438,7 @@ def rail_fence_encrypt(text):
 		if row_num == 4:
 			row_num = 1
 
-	cipher_text = "\n" + row1 + " " + row2 + " " + row3
-	return cipher_text
+	f.write("\n" + row1 + " " + row2 + " " + row3)
 
 def rail_fence_decrypt(cipher_text):
 	plain_text = ""
@@ -430,70 +454,75 @@ def rail_fence_decrypt(cipher_text):
 
 
 # Tests:-------------------------------------------------------------
-if "-h" in sys.argv:
-	print ("\n$ python cipher.py -f <input filename> -c -o <encrypted/decrypted output filename>")
-	print
-	print ("Possible options for -f flag:\n\t-e: encrypt file\n\t-d: decrypt file")
-	print ("<input filename>:\n\tfile to be encrypted or decrypted")
-	print ("Possible options for -c flag:")
-	print ("\t-c: Caesar Cipher")
-	print ("\t-s: Simple Substitution Cipher")
-	print ("\t-a: Atbash Cipher")
-	print ("\t-v: Vigenere Cipher")
-	print ("\t-r: Rail Fence Cipher")
-	print ("-o <encrypted/decrypted output filename>:")
-	print ("\tfile name where encrypted/decrypted text will be written")
-	print ("NOTE: If -o flag and filename are not provided, encrypted/decrypted text will be written to 'encrypted' or 'decrypted', respectively.\n")
-	exit()
-elif len(sys.argv) != 4 and len(sys.argv) != 6:
-	print ("\nERROR: You have not entered the correct number of arguments in the command line.\n")
-	print ("Please run the program again with the '-h' flag in the command line to see all possible command line arguments.")
-	print ("\t$ python cipher.py -h\n")
-	exit()
-else: 
-	ed_flag = sys.argv[1]
-	input_filename = sys.argv[2]
-	cipher_flag = sys.argv[3]
-	if len(sys.argv) == 6:
-		output_file = sys.argv[5]
-	else:
-		if ed_flag == "-e":
-			output_file = "encrypted"
-		else:
-			output_file = "decrypted"
 
-	f = open(input_filename, "r")
-	text = f.read()
+print(is_punctuation("."))
+print(is_punctuation("?"))
+print(is_punctuation("k"))
+print(is_punctuation("A"))
+# if "-h" in sys.argv:
+# 	print ("\n$ python cipher.py -f <input filename> -c -o <encrypted/decrypted output filename>")
+# 	print
+# 	print ("Possible options for -f flag:\n\t-e: encrypt file\n\t-d: decrypt file")
+# 	print ("<input filename>:\n\tfile to be encrypted or decrypted")
+# 	print ("Possible options for -c flag:")
+# 	print ("\t-c: Caesar Cipher")
+# 	print ("\t-s: Simple Substitution Cipher")
+# 	print ("\t-a: Atbash Cipher")
+# 	print ("\t-v: Vigenere Cipher")
+# 	print ("\t-r: Rail Fence Cipher")
+# 	print ("-o <encrypted/decrypted output filename>:")
+# 	print ("\tfile name where encrypted/decrypted text will be written")
+# 	print ("NOTE: If -o flag and filename are not provided, encrypted/decrypted text will be written to 'encrypted' or 'decrypted', respectively.\n")
+# 	exit()
+# elif len(sys.argv) != 4 and len(sys.argv) != 6:
+# 	print ("\nERROR: You have not entered the correct number of arguments in the command line.\n")
+# 	print ("Please run the program again with the '-h' flag in the command line to see all possible command line arguments.")
+# 	print ("\t$ python cipher.py -h\n")
+# 	exit()
+# else: 
+# 	ed_flag = sys.argv[1]
+# 	input_filename = sys.argv[2]
+# 	cipher_flag = sys.argv[3]
+# 	if len(sys.argv) == 6:
+# 		output_file = sys.argv[5]
+# 	else:
+# 		if ed_flag == "-e":
+# 			output_file = "encrypted"
+# 		else:
+# 			output_file = "decrypted"
 
-	if ed_flag == "-e":
-		if cipher_flag == "-c":
-			print("Running Caesar cipher encryption..\n..Output is in '" + output_file + "'")
-			caesar_encrypt(text, output_file)
-		elif cipher_flag == "-s":
-			print ("Running a simple substitution cipher encryption..\n..Output is in '" + output_file + "'")
-			simple_sub_encrypt(text, output_file)
-		elif cipher_flag == "-a":
-			print ("Running Atbash Cipher encryption..\n..Output is in '" + output_file + "'")
-			atbash_encrypt(text, output_file)
-		elif cipher_flag == "-v":
-			print ("Running Vigenere Cipher encryption..\n..Output is in '" + output_file + "'")
-			vigenere_encrypt(text, output_file)
-		elif cipher_flag == "-r":
-			print ("Running Rail Fence Cipher encryption..\n..Output is in '" + output_file + "'")
-			rail_fence_encrypt(text, output_file)
-	else:
-		if cipher_flag == "-c":
-			print("Running Caesar cipher decryption..\n..Output is in '" + output_file + "'")
-			caesar_decrypt(text, output_file)
-		elif cipher_flag == "-s":
-			print ("Running a simple substitution cipher decryption..\n..Output is in '" + output_file + "'")
-			simple_sub_decrypt(text, output_file)
-		elif cipher_flag == "-a":
-			print ("Running Atbash Cipher decryption..\n..Output is in '" + output_file + "'")
-			atbash_decrypt(text, output_file)
-		elif cipher_flag == "-v":
-			print ("Running Vigenere Cipher decryption..\n..Output is in '" + output_file + "'")
-			vigenere_decrypt(text, output_file)
-		elif cipher_flag == "-r":
-			print ("Running Rail Fence Cipher decryption..\n..Output is in '" + output_file + "'")
-			rail_fence_decrypt(text, output_file)	
+# 	f = open(input_filename, "r")
+# 	text = f.read()
+
+# 	if ed_flag == "-e":
+# 		if cipher_flag == "-c":
+# 			print("Running Caesar cipher encryption..\n..Output is in '" + output_file + "'")
+# 			caesar_encrypt(text, output_file)
+# 		elif cipher_flag == "-s":
+# 			print ("Running a simple substitution cipher encryption..\n..Output is in '" + output_file + "'")
+# 			simple_sub_encrypt(text, output_file)
+# 		elif cipher_flag == "-a":
+# 			print ("Running Atbash Cipher encryption..\n..Output is in '" + output_file + "'")
+# 			atbash_encrypt(text, output_file)
+# 		elif cipher_flag == "-v":
+# 			print ("Running Vigenere Cipher encryption..\n..Output is in '" + output_file + "'")
+# 			vigenere_encrypt(text, output_file)
+# 		elif cipher_flag == "-r":
+# 			print ("Running Rail Fence Cipher encryption..\n..Output is in '" + output_file + "'")
+# 			rail_fence_encrypt(text, output_file)
+# 	else:
+# 		if cipher_flag == "-c":
+# 			print("Running Caesar cipher decryption..\n..Output is in '" + output_file + "'")
+# 			caesar_decrypt(text, output_file)
+# 		elif cipher_flag == "-s":
+# 			print ("Running a simple substitution cipher decryption..\n..Output is in '" + output_file + "'")
+# 			simple_sub_decrypt(text, output_file)
+# 		elif cipher_flag == "-a":
+# 			print ("Running Atbash Cipher decryption..\n..Output is in '" + output_file + "'")
+# 			atbash_decrypt(text, output_file)
+# 		elif cipher_flag == "-v":
+# 			print ("Running Vigenere Cipher decryption..\n..Output is in '" + output_file + "'")
+# 			vigenere_decrypt(text, output_file)
+# 		elif cipher_flag == "-r":
+# 			print ("Running Rail Fence Cipher decryption..\n..Output is in '" + output_file + "'")
+# 			rail_fence_decrypt(text, output_file)	
