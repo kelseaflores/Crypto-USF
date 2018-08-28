@@ -23,8 +23,8 @@ $ python cipher.py -h
 
 $ python cipher.py -f input_filename> -c -o output_filename<br><br>
 Possible options for -f flag:
-<br>U+0009-e: encrypt file
-<br>-d: decrypt file
+<br>    -e: encrypt file
+<br>    -d: decrypt file
 <br><br>
 input_filename:<br>file to be encrypted or decrypted
 <br><br>
