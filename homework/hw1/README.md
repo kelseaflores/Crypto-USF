@@ -11,11 +11,11 @@ This will give the user a list of all possible command line arguments in the pro
 Python version 2.7.10
 
 
-Imported libraries: <br>
+**Imported libraries:** <br>
 sys - Imported sys library to be able to access command line args.
 
 
-All possible command line options:
+**All possible command line options:**
 
 -h flag will list all possible command line options and brief descriptions of each <br>
 $ python cipher.py -h
@@ -81,7 +81,7 @@ Decrypt the file using rail fence cipher and write the decrypted text to default
 $ python cipher.py -d filename -r 
 
 
-References: 
+**References: **
 Caesar Cipher: <br>
 https://learncryptography.com/classical-encryption/caesar-cipher
 
