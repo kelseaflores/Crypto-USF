@@ -82,7 +82,7 @@ Decrypt the file using rail fence cipher and write the decrypted text to default
 $ python cipher.py -d filename -r 
 
 
-**References: **<br>
+**References:**<br>
 Caesar Cipher: 
 https://learncryptography.com/classical-encryption/caesar-cipher
 
