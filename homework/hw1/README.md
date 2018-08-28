@@ -17,7 +17,7 @@ All possible command line options:
 $ python cipher.py -h
 
 Encrypt the file using Caesar Cipher and write the encrypted text to given output file <br>
-$ python cipher.py -e ><filename>< -c -o <encrypted filename>
+$ python cipher.py -e "<filename>" -c -o "<encrypted filename>"
 
 Encrypt the file using simple substitution cipher and write the encrypted text to given output file <br>
 $ python cipher.py -e <filename> -s -o <encrypted filename>
