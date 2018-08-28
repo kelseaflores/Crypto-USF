@@ -37,67 +37,7 @@ Possible options for -c flag:
 <br><br>
 -o output_filename:
 <br>file name where encrypted/decrypted text will be written
-<br>"NOTE: If -o flag and filename are not provided, encrypted/decrypted text will be written to 'encrypted' or 'decrypted', respectively.
-
-Encrypt the file using Caesar Cipher and write the encrypted text to given output file <br>
-$ python cipher.py -e filename -c -o encrypted_filename
-
-Encrypt the file using simple substitution cipher and write the encrypted text to given output file <br>
-$ python cipher.py -e filename -s -o encrypted_filename
-
-Encrypt the file using Atbash Cipher and write the encrypted text to given output file <br>
-$ python cipher.py -e filename -a -o encrypted_filename
-
-Encrypt the file using Vigenere Cipher and write the encrypted text to given output file <br>
-$ python cipher.py -e filename -v -o encrypted_filename
-
-Encrypt the file using rail fence cipher and write the encrypted text to given output file <br>
-$ python cipher.py -e filename -r -o encrypted_filename
-
-Decrypt the file using Caesar Cipher and write the decrypted text to given output file <br>
-$ python cipher.py -d filename -c -o decrypted_filename
-
-Decrypt the file using simple substitution cipher and write the decrypted text to given output file <br>
-$ python cipher.py -d filename -s -o decrypted_filename
-
-Decrypt the file using Atbash Cipher and write the decrypted text to given output file <br>
-$ python cipher.py -d filename -a -o decrypted_filename
-
-Decrypt the file using Vigenere Cipher and write the decrypted text to given output file <br>
-$ python cipher.py -d filename -v -o decrypted_filename
-
-Decrypt the file using rail fence cipher and write the decrypted text to given output file <br>
-$ python cipher.py -d filename -r -o decrypted_filename
-
-Encrypt the file using Caesar Cipher and write the encrypted text to default output file <br>
-$ python cipher.py -e filename -c 
-
-Encrypt the file using simple substitution cipher and write the encrypted text to default output file <br>
-$ python cipher.py -e filename -s 
-
-Encrypt the file using Atbash Cipher and write the encrypted text to default output file <br>
-$ python cipher.py -e filename -a 
-
-Encrypt the file using Vigenere Cipher and write the encrypted text to default output file <br>
-$ python cipher.py -e filename -v 
-
-Encrypt the file using rail fence cipher and write the encrypted text to default output file <br>
-$ python cipher.py -e filename -r 
-
-Decrypt the file using Caesar Cipher and write the decrypted text to default output file <br>
-$ python cipher.py -d filename -c 
-
-Decrypt the file using simple substitution cipher and write the decrypted text to default output file <br>
-$ python cipher.py -d filename -s 
-
-Decrypt the file using Atbash Cipher and write the decrypted text to default output file <br>
-$ python cipher.py -d filename -a
-
-Decrypt the file using Vigenere Cipher and write the decrypted text to default output file <br>
-$ python cipher.py -d filename -v 
-
-Decrypt the file using rail fence cipher and write the decrypted text to default output file <br>
-$ python cipher.py -d filename -r 
+<br><br>"NOTE: If -o flag and filename are not provided, encrypted/decrypted text will be written to 'encrypted' or 'decrypted', respectively.
 
 
 **References:**<br>
