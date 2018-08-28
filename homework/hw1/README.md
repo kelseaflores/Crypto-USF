@@ -37,7 +37,7 @@ Possible options for -c flag:
 <br><br>
 -o output_filename:
 <br>file name where encrypted/decrypted text will be written
-<br><br>"NOTE: If -o flag and filename are not provided, encrypted/decrypted text will be written to 'encrypted' or 'decrypted', respectively.
+<br><br>"NOTE: If -o flag and output_filename are not provided, encrypted/decrypted text will be written to default files 'encrypted' or 'decrypted', respectively.
 
 
 **References:**<br>
