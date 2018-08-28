@@ -1,8 +1,11 @@
 ## HW 1: Classic Ciphers<br>
-a brief description of what your program does
+
+A Python command-line program that encrypts or decrypts a file. Users must specify whether they would like to encrypt or decrypt a file. They must also specify which cipher they want to use to encrypt/decrypt their text file.
 
 
-features of your program
+The user can enter the "-h" flag on the command line: <br><br>
+    $ python cipher.py -h<br><br>
+This will give the user a list of all possible command line arguments in the proper format with a brief description of each.
 
 
 Python version 2.7.10
