@@ -4,7 +4,7 @@ A Python command-line program that encrypts or decrypts a file. Users must speci
 
 
 The user can enter the "-h" flag on the command line: <br><br>
-        $ python cipher.py -h<br><br>
+...$ python cipher.py -h<br><br>
 This will give the user a list of all possible command line arguments in the proper format with a brief description of each.
 
 
