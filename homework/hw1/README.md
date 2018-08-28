@@ -3,10 +3,12 @@
 A Python command-line program that encrypts or decrypts a file. Users must specify whether they would like to encrypt or decrypt a file. They must also specify which cipher they want to use to encrypt/decrypt their text file.
 
 
+**Feature(s):**
 The user can enter the "-h" flag on the command line: $ python cipher.py -h<br>
 This will give the user a list of all possible command line arguments in the proper format with a brief description of each.
 
 
+**Python version:**
 Python version 2.7.10
 
 
