@@ -83,7 +83,7 @@ $ python cipher.py -d filename -r
 
 
 **References:**<br>
-Caesar Cipher: 
+Caesar Cipher: <br>
 https://learncryptography.com/classical-encryption/caesar-cipher
 
 Simple Substitution Cipher: <br>
