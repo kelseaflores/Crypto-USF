@@ -21,6 +21,24 @@ sys - Imported sys library to be able to access command line args.
 -h flag will list all possible command line options and brief descriptions of each <br>
 $ python cipher.py -h
 
+$ python cipher.py -f input_filename> -c -o _output_filename<br>
+Possible options for -f flag:
+<br>-e: encrypt file
+<br>-d: decrypt file
+<br><br>
+input_filename:<br>file to be encrypted or decrypted
+<br><br>
+Possible options for -c flag:
+<br>-c: Caesar Cipher
+<br>-s: Simple Substitution Cipher
+<br>-a: Atbash Cipher
+<br>-v: Vigenere Cipher
+<br>-r: Rail Fence Cipher
+<br><br>
+-o output_filename:
+<br>file name where encrypted/decrypted text will be written
+<br>"NOTE: If -o flag and filename are not provided, encrypted/decrypted text will be written to 'encrypted' or 'decrypted', respectively.
+
 Encrypt the file using Caesar Cipher and write the encrypted text to given output file <br>
 $ python cipher.py -e filename -c -o encrypted_filename
 
