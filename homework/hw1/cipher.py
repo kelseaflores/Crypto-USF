@@ -461,7 +461,7 @@ def rail_fence_encrypt(text, output_file):
 		if row_num == 4:
 			row_num = 1
 
-	f.write("\n" + row1 + " " + row2 + " " + row3)
+	f.write(row1 + " " + row2 + " " + row3)
 
 def rail_fence_decrypt(cipher_text, output_file):
 	"""
@@ -487,10 +487,12 @@ def rail_fence_decrypt(cipher_text, output_file):
 	index_of_char = 0
 	i = 0
 	text_array = cipher_text.split()
-	num_char = len(cipher_text)
+	num_char = len(cipher_text) - (len(text_array) - 1)
 
 	while i < num_char:
 		word = text_array[index_of_word]
+		if index_of_char == len(word):
+			return
 		c = word[index_of_char]
 		if c == "/":
 			f.write(" ")
@@ -502,8 +504,6 @@ def rail_fence_decrypt(cipher_text, output_file):
 		if index_of_word == len(text_array):
 			index_of_word = 0
 			index_of_char += 1
-			if index_of_char == len(word):
-				break
 		i += 1
 
 
@@ -576,4 +576,4 @@ else:
 			vigenere_decrypt(clean_text, output_file)
 		elif cipher_flag == "-r":
 			print ("Running Rail Fence Cipher decryption..\n..Output is in '" + output_file + "'")
-			print(rail_fence_decrypt(clean_text, output_file))
+			rail_fence_decrypt(text, output_file)
