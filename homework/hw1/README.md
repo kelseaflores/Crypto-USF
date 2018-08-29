@@ -23,7 +23,7 @@ sys - Imported sys library to be able to access command line args.
 -h flag will list all possible command line options <br>
 $ python cipher.py -h
 
-$ python cipher.py -f input_filename> -c -o output_filename<br><br>
+$ python cipher.py -f input_filename -c -o output_filename<br><br>
 Possible options for -f flag:
 <br>    -e: encrypt file
 <br>    -d: decrypt file
