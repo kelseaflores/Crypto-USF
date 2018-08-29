@@ -36,7 +36,7 @@ def caesar_encrypt(text, output_file):
     writes the encrypted code to the given output file. 
 
     Iterates through the plain text character by character, gets the character's
-    ASCII value, adds 2 to the value, and converts it back into a character. 
+    ASCII value, adds 3 to the value, and converts it back into a character. 
     The function only encrypts letters of the alphabet (a-z,A-Z), so it checks
     if the character to be encrypted is a edge case. If it is, it wraps around to the
     front. 
@@ -55,14 +55,18 @@ def caesar_encrypt(text, output_file):
 		a_val = ord(c)
 		if (a_val > 64 and a_val < 91) or (a_val > 96 and a_val < 123):
 			if a_val == 90:
-				a_val = 63
+				a_val = 64
 			elif a_val == 89:
-				a_val = 65
+				a_val = 63
+			elif a_val == 88:
+				a_val = 62
 			elif a_val == 122:
 				a_val = 96
 			elif a_val == 121:
-				a_val = 97
-			f.write(chr(a_val + 2))
+				a_val = 95
+			elif a_val == 120:
+				a_val = 94
+			f.write(chr(a_val + 3))
 		if a_val == 32:
 			f.write(" ")
 		elif a_val == 10:
@@ -74,7 +78,7 @@ def caesar_decrypt(cipher_text, output_file):
     the decrypted text to the given output file.
 
     Iterates through the cipher text character by character, gets the character's
-    ASCII value, subtracts 2 from the value, and converts it back into a character. 
+    ASCII value, subtracts 3 from the value, and converts it back into a character. 
     The function only encrypts letters of the alphabet (a-z,A-Z), so it checks
     if the character to be encrypted is a edge case. If it is, it wraps around back
     around to the end.
@@ -97,11 +101,15 @@ def caesar_decrypt(cipher_text, output_file):
 				a_val = 91
 			elif a_val == 66:
 				a_val = 92
+			elif a_val == 67:
+				a_val = 93
 			elif a_val == 97:
 				a_val = 123
 			elif a_val == 98:
 				a_val = 124
-			f.write(chr(a_val - 2))
+			elif a_val == 99:
+				a_val = 125
+			f.write(chr(a_val - 3))
 		if a_val == 32:
 			f.write(" ")
 		elif a_val == 10: 
